@@ -1,5 +1,17 @@
-# Valores iniciais: um valor decimal a ser convertido para binário
-decimal = 80
+from sys import argv, exit
+
+# Ler o valor passado como primeiro argumento do programa
+# Há uma tentativa de conversão para inteiro, que decide continuar o programa ou não
+# Além disso, verifica se o número está compreendido entre 0 e 255 (incluindo os limites)
+try:
+    decimal = int(argv[1])
+    if decimal < 0 or decimal > 255:
+        raise ValueError
+except ValueError:
+    print('Por favor, informe como parâmetro um número decimal entre 0 e 255.')
+    exit()
+
+# Com o número decimal dentro dos limites, o programa avança normalmente
 print('Número decimal: ' + str(decimal))
 
 # A string do número binário começa vazia
