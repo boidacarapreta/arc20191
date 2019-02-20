@@ -1,14 +1,17 @@
+# Funções da biblioteca sys
 from sys import argv, exit
 
 # Ler o valor passado como primeiro argumento do programa
-# Há uma tentativa de conversão para inteiro, que decide continuar o programa ou não
-# Além disso, verifica se o número está compreendido entre 0 e 255 (incluindo os limites)
+# Há uma tentativa de conversão para inteiro, que decide
+# continuar o programa ou não
+# Além disso, verifica se o número está compreendido
+# entre 0 e 255 (incluindo os limites)
 try:
     decimal = int(argv[1])
     if decimal < 0 or decimal > 255:
         raise ValueError
 except ValueError:
-    print('Por favor, informe como parâmetro um número decimal entre 0 e 255.')
+    print('Por favor, informe um número decimal entre 0 e 255.')
     exit()
 
 # Com o número decimal dentro dos limites, o programa avança normalmente
@@ -23,12 +26,11 @@ binario = ''
 # e 0 (zero) o último (limite não incluído)
 # Detalhe para o passo (step) negativo para ordem descrescente
 for digito in range(7, -1, -1):
-    resto = decimal - pow(2, digito)
-    if resto >= 0:
-        binario = binario + '1'
-        decimal = decimal - pow(2, digito)
+    if decimal - pow(2, digito) >= 0:
+        binario += '1'
+        decimal -= pow(2, digito)
     else:
-        binario = binario + '0'
+        binario += '0'
 
 # Apresentação do resultado final
 print('Convertido para binário: ' + binario)
@@ -42,7 +44,7 @@ decimal = 0
 # por isso o uso de valor absoluto (módulo) do número
 for digito in range(0, 8, 1):
     if binario[digito] == '1':
-        decimal = decimal + pow(2, abs(digito - 7))
+        decimal += pow(2, abs(digito - 7))
 
 # Apresentação da prova real
 print('Convertido de volta para decimal: ' + str(decimal))
